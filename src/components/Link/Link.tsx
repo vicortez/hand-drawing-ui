@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createComponent } from '@lit/react';
 import { WiredLink as _WiredLink } from 'wired-elements/lib/wired-link.js';
 
-interface Props extends React.HTMLAttributes<_WiredLink> {
+type Props = React.HTMLAttributes<_WiredLink> & {
   elevation?: number;
   href?: string;
   target?: string;

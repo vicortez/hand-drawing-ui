@@ -13,8 +13,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    elevation: 3,
-    href: "/more.html",
+    elevation: 1,
+    href: "https://www.google.com",
     target: "_blank",
     children: "Link"
   }

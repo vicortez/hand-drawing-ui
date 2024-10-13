@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    selected: 'two',
+    defaultSelected: 'two',
     options: [
       { value: 'one', content: 'Option 1' },
       { value: 'two', content: 'Option 2' },

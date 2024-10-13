@@ -3,8 +3,8 @@ import { createComponent } from '@lit/react';
 import { WiredCombo as _WiredCombo } from 'wired-elements/lib/wired-combo.js';
 import Item from '../Item';
 
-interface ComboProps extends React.HTMLAttributes<_WiredCombo> {
-  selected?: string;
+type ComboProps = React.HTMLAttributes<_WiredCombo> & {
+  defaultSelected?: string;
   options?: Array<{ value: string; content: string }>;
 }
 
@@ -14,9 +14,9 @@ const WiredComboComponent = createComponent({
   elementClass: _WiredCombo,
 });
 
-export const Combo: React.FC<ComboProps> = ({ selected, options, ...props }) => {
+export const Combo: React.FC<ComboProps> = ({ defaultSelected, options, ...props }) => {
   return (
-    <WiredComboComponent selected={selected} {...props}>
+    <WiredComboComponent selected={defaultSelected} {...props}>
       {options?.map((option) => (
         <Item key={option.value}>{option.content}</Item>
       ))}
