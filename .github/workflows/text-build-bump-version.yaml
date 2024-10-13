@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - release
+      - publish
 
 jobs:
   test-build-package:
@@ -37,8 +37,8 @@ jobs:
           npm run build
           echo "Finished running build"
 
-      - name: release & publish
-        if: github.ref == 'refs/heads/release'
+      - name: release-publish
+        if: github.ref == 'refs/heads/publish'
         env:
           NPM_AUTH: ${{ secrets.NPM_AUTH }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -47,7 +47,7 @@ jobs:
           cp ./package.json ./dist/
           npm run release
 
-      - name: publish alpha
+      - name: publish-alpha
         env:
           NPM_AUTH: ${{ secrets.NPM_AUTH }}
         run: |
@@ -61,13 +61,13 @@ jobs:
         run: if [ -e .npmrc ]; then rm .npmrc; fi
 
       - name: Create Pull Request
-        if: github.ref == 'refs/heads/release'
+        if: github.ref == 'refs/heads/publish'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [[ $(git log --format=%an | head -1 ) == 'semantic-release-bot' ]]; then
-            echo 'Releasing log detected. Raising PRs...'
-            gh pr create --base main  --head release --title "chore: version bump to $(cat package.json | jq -r '.version') [skip ci]" --body ""
+            echo 'Publishing log detected. Raising PRs...'
+            gh pr create --base main  --head publish --title "chore: version bump to $(cat package.json | jq -r '.version') [skip ci]" --body ""
           else 
-            echo 'Releasing skipped.'
+            echo 'Publishing skipped.'
           fi
