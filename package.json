@@ -12,8 +12,6 @@
   "main": "./dist/hand-drawn-ui.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "dev": "npm run storybook",
-    "start": "npm run storybook",
     "build": "tsc && vite build",
     "lint": "eslint ./src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
@@ -21,7 +19,7 @@
     "test": "jest",
     "test:ci": "echo $(node -v) &&CI=true vitest --silent",
     "test:staged": "jest --silent --passWithNoTests --findRelatedTests ",
-    "storybook": "storybook dev -p 80",
+    "storybook": "storybook dev -p 8899",
     "release": "semantic-release",
     "build-storybook": "storybook build",
     "component": "yo ./generators/component"
