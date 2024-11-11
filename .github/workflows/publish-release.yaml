@@ -1,14 +1,12 @@
 name: Publish Release
 
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches:
       - publish
 
 jobs:
   release:
-    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.title, '[AUTO]')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎
