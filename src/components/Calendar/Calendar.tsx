@@ -4,6 +4,9 @@ import { WiredCalendar } from 'wired-elements/lib/wired-calendar.js';
 import { createComponent } from '@lit/react';
 
 interface CalendarProps {
+  /**
+   * The selected date in 'MMM D, YYYY' format, like 'Nov 4, 2024'
+   */
   selected?: Dayjs;
   onSelected?: (date: Dayjs) => void;
 }
@@ -18,6 +21,7 @@ const CalendarComponent = createComponent({
 });
 
 export const Calendar: React.FC<CalendarProps> = ({ selected, onSelected }) => {
+  const formattedSelected = selected ? selected.format('MMM D, YYYY') : undefined;
   const handleSelected = (e: CustomEvent) => {
     if (onSelected) {
       const selectedDate = dayjs(e.detail.selected);
@@ -27,7 +31,8 @@ export const Calendar: React.FC<CalendarProps> = ({ selected, onSelected }) => {
 
   return (
     <CalendarComponent
-      selected={selected ? dayjs(selected).format('YYYY-MM-DD') : undefined}
+      initials
+      selected={formattedSelected}
       onSelected={handleSelected as (e: Event) => void}
     />
   );

@@ -13,9 +13,19 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    width: '200px',
     value: {
-      value: 'Option 1',
+      value: '1',
       text: 'Option 1'
+    },
+    selected: '1',
+    options: [
+      { value: '1', text: 'Option 1' },
+      { value: '2', text: 'Option 2' },
+      { value: '3', text: 'Option 3' }
+    ],
+    onChange: (value) => {
+      alert(value);
     }
   }
 };

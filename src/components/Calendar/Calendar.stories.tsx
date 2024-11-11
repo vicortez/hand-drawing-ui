@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Calendar } from './Calendar';
-import { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 const meta = {
   title: 'Components/Calendar',
   component: Calendar,
@@ -15,7 +15,8 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     onSelected: (date: Dayjs) => {
-      alert(date.format('YYYY-MM-DD'));
-    }
+      alert(date.format('MMM D, YYYY'));
+    },
+    selected: dayjs()
   }
 };

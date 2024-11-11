@@ -17,6 +17,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: 'this is normal text'
+    children: 'this is normal text',
+    elevation: 2,
+    onClick: () => {
+      alert('clicked');
+    },
+    width: '200px',
+    height: '200px'
   }
 };

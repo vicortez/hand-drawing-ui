@@ -13,6 +13,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    value: 50
+    value: 50,
+    min: 0,
+    max: 100
   }
 };

@@ -18,6 +18,9 @@ export const Default: Story = {
       { value: 'one', content: 'Option 1' },
       { value: 'two', content: 'Option 2' },
       { value: 'three', content: 'Option 3' }
-    ]
+    ],
+    onChange: (value: string) => {
+      alert(`selected: ${value}`);
+    }
   }
 };

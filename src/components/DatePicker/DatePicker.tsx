@@ -71,11 +71,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({ defaultValue, onChange }
   }, []);
 
   return (
-    <DatePickerContainer>
+    <DatePickerContainer onClick={handleInputClick}>
       <Input
         ref={inputRef}
         value={selectedDate ? selectedDate.format('YYYY-MM-DD') : ''}
-        onClick={handleInputClick}
         readonly
       />
       <CalendarIcon />
