@@ -1,13 +1,12 @@
-name: hand-drawn-ui
+name: Test Build and Publish Alpha
 
 on:
   push:
     branches:
       - main
-      - publish
 
 jobs:
-  test-build-package:
+  test-build-alpha:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -37,16 +36,6 @@ jobs:
           npm run build
           echo "Finished running build"
 
-      - name: release-publish
-        if: github.ref == 'refs/heads/publish'
-        env:
-          NPM_AUTH: ${{ secrets.NPM_AUTH }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          HUSKY: 0
-        run: |
-          cp ./package.json ./dist/
-          npm run release
-
       - name: publish-alpha
         env:
           NPM_AUTH: ${{ secrets.NPM_AUTH }}
@@ -58,16 +47,4 @@ jobs:
 
       - name: cleanup
         if: always()
-        run: if [ -e .npmrc ]; then rm .npmrc; fi
-
-      - name: Create Pull Request
-        if: github.ref == 'refs/heads/publish'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [[ $(git log --format=%an | head -1 ) == 'semantic-release-bot' ]]; then
-            echo 'Publishing log detected. Raising PRs...'
-            gh pr create --base main  --head publish --title "chore: version bump to $(cat package.json | jq -r '.version') [skip ci]" --body ""
-          else 
-            echo 'Publishing skipped.'
-          fi
+        run: if [ -e .npmrc ]; then rm .npmrc; fi 
