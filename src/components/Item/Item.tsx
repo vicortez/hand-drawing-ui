@@ -7,6 +7,8 @@ interface ItemProps {
   children?: React.ReactNode;
   selected?: boolean;
   value?: string;
+  onClick?: () => void;
+  borderBottom?: string;
 }
 
 const WiredItemComponent = createComponent({
@@ -15,8 +17,9 @@ const WiredItemComponent = createComponent({
   elementClass: _WiredItem
 });
 
-const StyledItem = styled(WiredItemComponent)`
+const StyledItem = styled(WiredItemComponent)<{ borderBottom?: string }>`
   --wired-item-selected-color: #f90;
+  border-bottom: ${({ borderBottom }) => borderBottom || 'none'};
 
   opacity: 1;
 
@@ -25,8 +28,8 @@ const StyledItem = styled(WiredItemComponent)`
   }
 `;
 
-export const Item: React.FC<ItemProps> = ({ selected, children, value }) => (
-  <StyledItem selected={selected} value={value}>
+export const Item: React.FC<ItemProps> = ({ selected, children, value, onClick, borderBottom }) => (
+  <StyledItem selected={selected} value={value} onClick={onClick} borderBottom={borderBottom}>
     {children}
   </StyledItem>
 );
