@@ -44,6 +44,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({ defaultValue, onChange }
   const [selectedDate, setSelectedDate] = useState<Dayjs | undefined>(defaultValue);
   const [isCalendarVisible, setIsCalendarVisible] = useState(false);
   const inputRef = useRef<_WiredInput>(null);
+  const datePickerRef = useRef<HTMLDivElement>(null);
 
   const handleInputClick = () => {
     setIsCalendarVisible(!isCalendarVisible);
@@ -58,7 +59,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({ defaultValue, onChange }
   };
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (inputRef.current && !inputRef.current.contains(event.target as Node)) {
+    if (
+      datePickerRef.current &&
+      !datePickerRef.current.contains(event.target as Node)
+    ) {
       setIsCalendarVisible(false);
     }
   };
@@ -71,7 +75,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({ defaultValue, onChange }
   }, []);
 
   return (
-    <DatePickerContainer onClick={handleInputClick}>
+    <DatePickerContainer ref={datePickerRef} onClick={handleInputClick}>
       <Input
         ref={inputRef}
         value={selectedDate ? selectedDate.format('YYYY-MM-DD') : ''}
