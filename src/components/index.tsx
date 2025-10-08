@@ -14,6 +14,7 @@ export * from './Tabs'
 export * from './Textarea'
 export * from './DatePicker'
 export * from './DateTimePicker'
+export * from './Image'
 
 
 export { default as Button } from './Button'
@@ -32,3 +33,4 @@ export { default as Tabs } from './Tabs'
 export { default as Textarea } from './Textarea'
 export { default as DatePicker } from './DatePicker'
 export { default as DateTimePicker } from './DateTimePicker'
+export { default as Image } from './Image'
